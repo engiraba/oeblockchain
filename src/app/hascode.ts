@@ -1,9 +1,7 @@
-export function hashCode(str: {}): number {
-    var hash = 0;
-    for (var i = 0; i < str.toString().length; i++) {
-        var character = str.toString().charCodeAt(i);
-        hash = ((hash<<5)-hash)+character;
-        hash = hash & hash; // Convert to 32bit integer
-    }
+import { sha256 } from "js-sha256";
+
+export function hashCode(str: {}): string {
+    let hash : string = '';
+    hash = sha256(str.toString());
     return hash;
 }
