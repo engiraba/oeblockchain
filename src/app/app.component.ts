@@ -12,6 +12,7 @@ import { hashCode } from './hascode';
 
 export class AppComponent {
   title = 'oeblockchain';
+  hashingTimer = 0;
   blockchain : Block[] = [];
   genesisTransactions = ["x  q"];
   hash : any;
@@ -21,6 +22,8 @@ export class AppComponent {
 
   generateBlock(block? : any){
 
+    this.startCountDown();
+    
     let lastBlock = this.blockchain[this.blockchain.length - 1];
     let newChain : string[] = lastBlock.getTransactions();
     newChain.push('test');
@@ -28,6 +31,14 @@ export class AppComponent {
     this.blockchain.push(newBlock);
     this.block = this.blockchain[this.blockchain.length - 1].getBlockHash();
     
+  }
+
+  startCountDown() {
+    this.hashingTimer = 10;
+    let countDown = setInterval(() => {
+      this.hashingTimer = this.hashingTimer - 1;
+      if(this.hashingTimer === 0) clearInterval(countDown)
+  }, 1000)
   }
 
   onSubmit(form : any)  {
@@ -40,8 +51,6 @@ export class AppComponent {
     this.blockchain = [new Block(0, this.genesisTransactions)];
     // this.block = hashCode(this.blockchain[0].toString());
     this.block = this.blockchain[0].getBlockHash();
-
-
   }
 
 }
