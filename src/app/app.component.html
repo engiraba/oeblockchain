@@ -33,9 +33,9 @@
 <button class="btn-primary" (click)="generateBlock(block)" [disabled]="hashingTimer">Generate Block</button>
 <br>
 <br>
-{{ hashingTimer }}
-<br>
-<br>
+{{ hashingTimer ? hashingTimer : ''}}
+<br *ngIf="hashingTimer">
+<br *ngIf="hashingTimer">
 
 <h3>Generate new transaction</h3>
 <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
