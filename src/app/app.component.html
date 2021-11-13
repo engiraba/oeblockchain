@@ -13,14 +13,16 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
   }
 
+  ul {
+  list-style-type: none;
+  }
+
 </style>
 <div class="content">
   <h1>Current block hash</h1>
 <div style="font-size: 30px; font-weight: 900; color: blue;">
   {{ 
-
     block
-  
   }}
 </div> 
 <br>
@@ -28,16 +30,19 @@
 
 
 <h3>Generate single new block</h3>
-<button class="btn-primary" (click)="generateBlock(block)">Generate Block</button>
+<button class="btn-primary" (click)="generateBlock(block)" [disabled]="hashingTimer">Generate Block</button>
+<br>
+<br>
+{{ hashingTimer }}
 <br>
 <br>
 
-<h3>Generate new chain</h3>
+<h3>Generate new transaction</h3>
 <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
   <input
     required
     name="hashValue"
-    placeholder="Enter a transaction value"
+    placeholder="Enter a transaction"
     [(ngModel)]="hash"/>
   <br>
   <br>
@@ -49,5 +54,12 @@
 
 <h3>List of blocks ({{ blockchain.length }}) in the chain</h3>
 <ul>
-  <li *ngFor="let block of blockchain">{{ block.getBlockHash() + ' ' + block.getTransactions()}}</li>
+  <li *ngFor="let block of blockchain">{{ block.getBlockHash() }}</li>
+</ul>
+<br>
+<br>
+
+<h3>Full list of transactions</h3>
+<ul>
+  <li *ngFor="let block of blockchain">{{ block.getTransactions() }}</li>
 </ul>
