@@ -17,9 +17,33 @@
   list-style-type: none;
   }
 
+  section {
+    margin: 30px 0;
+    padding: 5px 0;
+    background-color: lightgray;
+  }
+
+  .sidebar {
+
+    padding: 0 10px;
+
+  }
+
 </style>
+
 <div class="content">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav class="sidebar" mode="side" opened>
+  <h2>Dashboard</h2>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <section>
+
+      
   <h1>Current block hash</h1>
+
+
 <div style="font-size: 30px; font-weight: 900; color: blue;">
   {{ 
     block
@@ -27,17 +51,24 @@
 </div> 
 <br>
 <br>
+</section>
+
+<section>
 
 
-<h3>Generate single new block</h3>
-<button class="btn-primary" (click)="generateBlock(block)" [disabled]="hashingTimer">Generate Block</button>
+  <h3>Generate single new block</h3>
+<button mat-button (click)="generateBlock(block)" [disabled]="hashingTimer ? true : false">Generate Block</button>
 <br>
 <br>
 {{ hashingTimer ? hashingTimer : ''}}
 <br *ngIf="hashingTimer">
 <br *ngIf="hashingTimer">
 
-<h3>Generate new transaction</h3>
+</section>
+
+<section>
+
+  <h3>Generate new transaction</h3>
 <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
   <input
     required
@@ -46,20 +77,34 @@
     [(ngModel)]="hash"/>
   <br>
   <br>
-  <button type="Submit" [disabled]="!form.valid">Submit</button>
+  <button mat-button [disabled]="!form.valid">Submit</button>
   <br>
 </form>
 <br>
 <br>
+</section>
 
-<h3>List of blocks ({{ blockchain.length }}) in the chain</h3>
+
+<section>
+
+
+  <h3>List of blocks ({{ blockchain.length }}) in the chain</h3>
 <ul>
   <li *ngFor="let block of blockchain">{{ block.getBlockHash() }}</li>
 </ul>
 <br>
 <br>
+</section>
 
-<h3>Full list of transactions</h3>
+
+<section>
+
+  <h3>Full list of transactions</h3>
 <ul>
   <li *ngFor="let block of blockchain">{{ block.getTransactions() }}</li>
 </ul>
+
+</section>
+
+</mat-sidenav-content>
+</mat-sidenav-container>
