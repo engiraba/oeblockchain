@@ -1,61 +1,27 @@
-<style>
-  .content {
-    background-color: black;
-    color: green;
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: max-content;
-    min-height: 100%;
-    margin: 0;
-    text-align: center;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-  }
-
-  ul {
-  list-style-type: none;
-  }
-
-  section {
-    margin: 30px 0;
-    padding: 5px 0;
-    background-color: beige;
-    border-radius: 1%;
-  }
-
-  .sidebar {
-
-    padding: 0 10px;
-
-  }
-
-
-</style>
-
 <div class="content">
   <mat-sidenav-container class="example-container">
     <mat-sidenav class="sidebar" mode="side" opened>
   <h2><a href="/">Dashboard</a></h2>
 
     </mat-sidenav>
-    <mat-sidenav-content>
-      <section>
+    <mat-sidenav-content class="content-nav">
+
+      <app-wrapper>
 
       
   <h1>Current block hash</h1>
 
 
-<div style="font-size: 30px; font-weight: 900; color: blue;">
+<div style="font-size: 20px; font-weight: 900; color: beige;">
   {{ 
     block
   }}
 </div> 
 <br>
 <br>
-</section>
 
-<section>
+</app-wrapper>
+<app-wrapper>
 
 
   <h3>Generate single new block</h3>
@@ -66,9 +32,9 @@
 <br *ngIf="hashingTimer">
 <br *ngIf="hashingTimer">
 
-</section>
+</app-wrapper>
 
-<section>
+<app-wrapper>
 
   <h3>Generate new transaction</h3>
 
@@ -88,10 +54,10 @@
 </form>
 <br>
 <br>
-</section>
+</app-wrapper>
 
 
-<section>
+<app-wrapper>
 
 
   <h3>List of blocks ({{ blockchain.length }}) in the chain</h3>
@@ -100,17 +66,17 @@
 </ul>
 <br>
 <br>
-</section>
+</app-wrapper>
 
 
-<section>
+<app-wrapper>
 
   <h3>Full list of transactions</h3>
 <ul>
   <li *ngFor="let block of blockchain">{{ block.getTransactions() }}</li>
 </ul>
 
-</section>
+</app-wrapper>
 
 </mat-sidenav-content>
 </mat-sidenav-container>
