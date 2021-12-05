@@ -22,7 +22,7 @@ export class AppComponent {
 
   generateBlock(block? : any){
 
-    this.hashingTimer = 10;
+    this.hashingTimer = 3;
     let countDown = setInterval(() => {
       this.hashingTimer = this.hashingTimer - 1;
       if(this.hashingTimer === 0) {
