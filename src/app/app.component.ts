@@ -59,19 +59,14 @@ export class AppComponent {
 
   }
 
-  startCountDown() {
-
-  }
 
   onSubmit(form : any)  {
-
     this.generateBlock();
     this.hash = '';
   }
 
   ngOnInit() {
     this.blockchain = [new Block(0, this.genesisTransactions)];
-    // this.block = hashCode(this.blockchain[0].toString());
     this.block = this.blockchain[0].getBlockHash();
   }
 
