@@ -20,7 +20,8 @@
   section {
     margin: 30px 0;
     padding: 5px 0;
-    background-color: lightgray;
+    background-color: beige;
+    border-radius: 1%;
   }
 
   .sidebar {
@@ -29,12 +30,13 @@
 
   }
 
+
 </style>
 
 <div class="content">
   <mat-sidenav-container class="example-container">
     <mat-sidenav class="sidebar" mode="side" opened>
-  <h2>Dashboard</h2>
+  <h2><a href="/">Dashboard</a></h2>
 
     </mat-sidenav>
     <mat-sidenav-content>
@@ -69,12 +71,16 @@
 <section>
 
   <h3>Generate new transaction</h3>
+
 <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
-  <input
-    required
-    name="hashValue"
-    placeholder="Enter a transaction"
-    [(ngModel)]="hash"/>
+
+  <mat-form-field class="example-form-field" appearance="fill">
+    <input matInput type="text" style="background-color: white;" [(ngModel)]="hash">
+    <button *ngIf="hash" matSuffix mat-icon-button aria-label="Clear" (click)="hash=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+    
   <br>
   <br>
   <button mat-button [disabled]="!form.valid">Submit</button>
