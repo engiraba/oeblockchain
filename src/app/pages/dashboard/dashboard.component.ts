@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   previousBlock : string = "";
 
   generateBlock(block? : any){
-
     this.hashingTimer = 3;
     let countDown = setInterval(() => {
       this.hashingTimer = this.hashingTimer - 1;
