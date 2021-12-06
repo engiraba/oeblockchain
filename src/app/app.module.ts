@@ -12,13 +12,17 @@ import {MatIconModule} from '@angular/material/icon';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CurrentBlockComponent } from './components/current-block/current-block.component';
+import { BlocksComponent } from './pages/blocks/blocks.component';
+import { TransactionsComponent } from './pages/transactions/transactions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WrapperComponent,
     DashboardComponent,
-    CurrentBlockComponent
+    CurrentBlockComponent,
+    BlocksComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
