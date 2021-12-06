@@ -10,11 +10,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CurrentBlockComponent } from './components/current-block/current-block.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WrapperComponent
+    WrapperComponent,
+    DashboardComponent,
+    CurrentBlockComponent
   ],
   imports: [
     BrowserModule,
