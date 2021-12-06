@@ -14,13 +14,12 @@
     flex-direction: row;
 }
 
-ul {
-    list-style-type: none;
-}
-
 .sidebar {
     border-right: 2px black solid;
     padding: 0 7px;
+    width: 300px;
+  margin-right: 100px;
+  border-right: 1px solid #555;
 }
 
 .content-nav {
