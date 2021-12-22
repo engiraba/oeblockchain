@@ -28,17 +28,17 @@ export class DashboardComponent implements OnInit {
         let newTransaction : string = this.generateTransaction();
         this.hash ? newChain.push(this.hash) : newChain.push(newTransaction);
         let newBlock = new Block(this.block, newChain);
-        this.blockchain.push(newBlock);
-        this.block = this.blockchain[this.blockchain.length - 1].getBlockHash();
+        this.blockchain.unshift(newBlock);
+        this.block = this.blockchain[0].getBlockHash();
       }
     }, 1000)
-    
+
   }
 
-  randomIntFromInterval(min : number, max : number) { 
+  randomIntFromInterval(min : number, max : number) {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
-  
+
   generateTransaction() : string {
 
     let a = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
