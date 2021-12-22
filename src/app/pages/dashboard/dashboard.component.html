@@ -1,59 +1,54 @@
+<app-wrapper>
+    <h3>Current block hash</h3>
 
-  
-        <app-wrapper>
-  
-        
-    <h1>Current block hash</h1>
-  
-  
-  <div style="font-size: 20px; font-weight: 900; color: beige;">
-    {{ 
+  <div style="font-size: 20px; font-weight: 900; font-weight: bold">
+    {{
       block
     }}
-  </div> 
+  </div>
   <br>
   <br>
-  
+
   </app-wrapper>
   <app-wrapper>
-  
-  
+
+
     <h3>Generate single new block</h3>
-  <button mat-button (click)="generateBlock(block)" [disabled]="hashingTimer ? true : false">Generate Block</button>
+  <button mat-stroked-button color="primary" (click)="generateBlock(block)" [disabled]="hashingTimer ? true : false">Generate Block</button>
   <br>
   <br>
   {{ hashingTimer ? hashingTimer : ''}}
   <br *ngIf="hashingTimer">
   <br *ngIf="hashingTimer">
-  
+
   </app-wrapper>
-  
+
   <app-wrapper>
-  
+
     <h3>Generate new transaction</h3>
-  
+
   <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
-  
+
     <mat-form-field class="example-form-field" appearance="fill">
-      <input matInput type="text" style="background-color: white;" [(ngModel)]="hash">
-      <button *ngIf="hash" matSuffix mat-icon-button aria-label="Clear" (click)="hash=''">
+      <input matInput type="text" [(ngModel)]="hash">
+      <button *ngIf="hash" matSuffix mat-stroked-button mat-icon-button aria-label="Clear" (click)="hash=''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-      
+
     <br>
     <br>
-    <button mat-button [disabled]="!form.valid">Submit</button>
+    <button mat-stroked-button [disabled]="!form.valid">Submit</button>
     <br>
   </form>
   <br>
   <br>
   </app-wrapper>
-  
-  
+
+
   <app-wrapper>
-  
-  
+
+
     <h3>List of blocks ({{ blockchain.length }}) in the chain</h3>
   <ul>
     <li *ngFor="let block of blockchain">{{ block.getBlockHash() }}</li>
@@ -61,13 +56,13 @@
   <br>
   <br>
   </app-wrapper>
-  
-  
+
+
   <app-wrapper>
-  
+
     <h3>Full list of transactions</h3>
   <ul>
     <li *ngFor="let block of blockchain">{{ block.getTransactions() }}</li>
   </ul>
-  
+
   </app-wrapper>
