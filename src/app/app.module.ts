@@ -14,6 +14,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CurrentBlockComponent } from './components/current-block/current-block.component';
 import { BlocksComponent } from './pages/blocks/blocks.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TransactionsComponent } from './pages/transactions/transactions.compone
     MatSidenavModule,
     MatButtonModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
