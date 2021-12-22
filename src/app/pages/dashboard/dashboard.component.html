@@ -38,7 +38,7 @@
 
     <br>
     <br>
-    <button mat-stroked-button [disabled]="!form.valid">Submit</button>
+    <button mat-stroked-button [disabled]="hashingTimer ? true : false && !form.valid">Submit</button>
     <br>
   </form>
   <br>
