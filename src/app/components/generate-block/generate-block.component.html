@@ -1,0 +1,32 @@
+<app-wrapper>
+    <h3>Generate single new block</h3>
+  <button mat-stroked-button color="primary" (click)="generateBlock(block)" [disabled]="hashingTimer ? true : false">Generate Block</button>
+  <br>
+  <br>
+  {{ hashingTimer ? hashingTimer : ''}}
+  <br *ngIf="hashingTimer">
+  <br *ngIf="hashingTimer">
+
+</app-wrapper>
+
+<app-wrapper>
+
+    <h3>Generate new transaction</h3>
+
+  <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <input matInput type="text" [(ngModel)]="hash" [ngModelOptions]="{standalone: true}">
+      <button *ngIf="hash" matSuffix mat-stroked-button mat-icon-button aria-label="Clear" (click)="hash=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <br>
+    <br>
+    <button mat-stroked-button [disabled]="(hashingTimer ? true : false) || !hash">Submit</button>
+    <br>
+  </form>
+  <br>
+  <br>
+</app-wrapper>
