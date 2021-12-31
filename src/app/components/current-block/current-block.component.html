@@ -1,15 +1,8 @@
-<app-wrapper>
-  
-        
-    <h1>Current block hash</h1>
-  
-  
-  <div style="font-size: 20px; font-weight: 900; color: beige;">
-    {{ 
-      block
-    }}
-  </div> 
-  <br>
-  <br>
-  
-  </app-wrapper>
+<app-wrapper  *ngIf='blocks$ | async as p'>
+  <h3>Current block hash</h3>
+<div style="font-size: 20px; font-weight: 900; font-weight: bold">
+    <h2>{{ p.blockchain[0].blockHash }}</h2>
+</div>
+<br>
+<br>
+</app-wrapper>
