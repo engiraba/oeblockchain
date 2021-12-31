@@ -17,6 +17,7 @@ import { TransactionsComponent } from './pages/transactions/transactions.compone
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { blockReducer } from './block.reducer';
+import { GenerateBlockComponent } from './components/generate-block/generate-block.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { blockReducer } from './block.reducer';
     DashboardComponent,
     CurrentBlockComponent,
     BlocksComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    GenerateBlockComponent
   ],
   imports: [
     BrowserModule,
