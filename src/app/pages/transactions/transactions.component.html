@@ -1,11 +1,6 @@
-
-  
-  
-  <app-wrapper>
-  
-    <h3>Full list of transactions</h3>
-  <ul>
-    ...
-  </ul>
-  
-  </app-wrapper>
+<app-wrapper>
+  <h3>Full list of transactions</h3>
+    <ul>
+      <li *ngFor="let b of blockchainstore.blockchain">{{ b.transactions }}</li>
+    </ul>
+</app-wrapper>
