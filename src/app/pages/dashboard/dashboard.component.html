@@ -1,61 +1,11 @@
-  <app-wrapper  *ngIf='blocks$ | async as p'>
-    <h3>Current block hash</h3>
-  <div style="font-size: 20px; font-weight: 900; font-weight: bold">
-      <h2>{{ p.blockchain[0].blockHash }}</h2>
-  </div>
-  <br>
-  <br>
-  </app-wrapper>
+<!-- Blockhash actuel -->
+<app-current-block></app-current-block>
 
-  <app-wrapper>
-    <h3>Generate single new block</h3>
-  <button mat-stroked-button color="primary" (click)="generateBlock(block)" [disabled]="hashingTimer ? true : false">Generate Block</button>
-  <br>
-  <br>
-  {{ hashingTimer ? hashingTimer : ''}}
-  <br *ngIf="hashingTimer">
-  <br *ngIf="hashingTimer">
+<!-- Générer nouveau block -->
+<app-generate-block></app-generate-block>
 
-  </app-wrapper>
+<!-- Blocks -->
+<app-blocks></app-blocks>
 
-  <app-wrapper>
-
-    <h3>Generate new transaction</h3>
-
-  <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
-
-    <mat-form-field class="example-form-field" appearance="fill">
-      <input matInput type="text" [(ngModel)]="hash" [ngModelOptions]="{standalone: true}">
-      <button *ngIf="hash" matSuffix mat-stroked-button mat-icon-button aria-label="Clear" (click)="hash=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-
-    <br>
-    <br>
-    <button mat-stroked-button [disabled]="(hashingTimer ? true : false) || !hash">Submit</button>
-    <br>
-  </form>
-  <br>
-  <br>
-  </app-wrapper>
-
-
-  <app-wrapper >
-    <h3>List of blocks ({{ blockchainstore.blockchain.length }}) in the chain</h3>
-      <ul>
-        <li *ngFor="let b of blockchainstore.blockchain">
-
-          {{ b.blockHash }}</li>
-      </ul>
-      <br>
-      <br>
-  </app-wrapper>
-
-
-  <app-wrapper>
-  <h3>Full list of transactions</h3>
-    <ul>
-      <li *ngFor="let block of blockchain">{{ block.getTransactions() }}</li>
-    </ul>
-  </app-wrapper>
+<!-- Transactions -->
+<app-transactions></app-transactions>>
