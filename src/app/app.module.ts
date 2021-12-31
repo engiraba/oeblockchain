@@ -15,6 +15,8 @@ import { CurrentBlockComponent } from './components/current-block/current-block.
 import { BlocksComponent } from './pages/blocks/blocks.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { MatCardModule } from '@angular/material/card';
+import { StoreModule } from '@ngrx/store';
+import { blockReducer } from './block.reducer';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,10 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    StoreModule.forRoot({
+      blocks: blockReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
