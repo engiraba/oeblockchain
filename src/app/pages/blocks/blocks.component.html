@@ -1,9 +1,8 @@
-<app-wrapper>
-  
-  
-    <h3>List of blocks (blockchain.length) in the chain</h3>
-  <ul>
-   ....
-  <br>
-  <br>
+<app-wrapper >
+  <h3>List of blocks ({{ blockchainstore.blockchain.length }}) in the chain</h3>
+    <ul>
+      <li *ngFor="let b of blockchainstore.blockchain">
 
+        {{ b.blockHash }}</li>
+    </ul>
+</app-wrapper>

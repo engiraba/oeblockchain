@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+interface AppState  {
+  blocks: any;
+}
 
 @Component({
   selector: 'app-blocks',
@@ -6,10 +12,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blocks.component.scss']
 })
 export class BlocksComponent implements OnInit {
+  //from store
+  blocks$: Observable<any>;
+  blockchainstore: any;
 
-  constructor() { }
+  // Store initialization
+  constructor(private store : Store<AppState>) {
+    this.blocks$ = this.store.select('blocks');
+  }
 
   ngOnInit(): void {
+    this.blocks$.subscribe(o => {
+      this.blockchainstore = o;
+    })
   }
 
 }
