@@ -28,3 +28,7 @@ export class Block {
 export interface Blockchain {
     blockchain: Block[];
 }
+
+export interface AppState  {
+    blocks: any;
+}
