@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Block } from '../../block';
+import { Block } from '../../block.model';
 
 @Component({
   selector: 'app-current-block',
