@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CurrentBlockComponent } from './components/current-block/current-block.component';
@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { blockReducer } from './block.reducer';
 import { GenerateBlockComponent } from './components/generate-block/generate-block.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { GenerateBlockComponent } from './components/generate-block/generate-blo
     MatInputModule,
     MatIconModule,
     MatCardModule,
+    MatGridListModule,
     StoreModule.forRoot({
       blocks: blockReducer
     })
