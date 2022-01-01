@@ -53,7 +53,8 @@ export class GenerateBlockComponent implements OnInit {
   }
 
   generateBlock(block? : any){
-    this.hashingTimer = 3;
+    this.hashingTimer = Math.round(3 + (this.blockchainstore.blockchain.length * 0.45));
+    this.hashingTimer > 2000 ? this.hashingTimer = 2000 : this.hashingTimer = this.hashingTimer;
     this.hash ? this.hashing = false : this.hashing = true;
     let countDown = setInterval(() => {
       this.hashingTimer = this.hashingTimer - 1;
