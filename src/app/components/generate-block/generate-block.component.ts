@@ -39,6 +39,22 @@ export class GenerateBlockComponent implements OnInit {
 // Generate the next block 
 onSubmit(form : any)  {
   this.generateBlock(); 
+
+i: number = 2;
+  let int = setInterval(() => {   
+    this.i++;
+   
+  }, 3000);  
+  /*
+  while (this.i < 10) {    
+    let int = setInterval(() => {   
+      this.i++;
+      this.doGenerateNewBlocks();    
+     
+    }, 3005);  
+    console.dir(this.i);    
+  }
+  */
 }
 
 generateBlock(block? : any){

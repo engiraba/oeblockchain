@@ -1,38 +1,70 @@
-<mat-grid-list cols="2" rowHeight="2:1">
+<mat-grid-list cols="4" rowHeight="2:1">
+  <mat-grid-tile>
+    <app-wrapper>
+      <h3>Status</h3>
+      <h2 [style.color]="'gray'">
+        {{ hashingTimer ? hashingTimer : '/'}}
+      </h2>
+    </app-wrapper>
+</mat-grid-tile>
+  <mat-grid-tile>
+    <app-wrapper>
+        <h3>Auto-generate blocks</h3>
+      <button 
+        mat-raised-button 
+        [color]="autoHashing ? 'warn' : 'primary'" 
+        [disabled]="hashingTimer && !autoHashing ? true : false"
+        (click)="autoGenerate(block)">
+        {{autoHashing ? 'Stop generating blocks' : 'Auto-generate blocks'}}
+      </button>
+    </app-wrapper>
+</mat-grid-tile>
     <mat-grid-tile>
         <app-wrapper>
             <h3>Generate single new block</h3>
-          <button mat-stroked-button color="primary" (click)="generateBlock(block)" [disabled]="hashingTimer ? true : false">Generate Block</button>
-          <br>
-          <br>
-          {{ hashingTimer ? hashingTimer : ''}}
-          <br *ngIf="hashingTimer">
-          <br *ngIf="hashingTimer">
-        
+          <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="generateBlock(block)" 
+            [disabled]="hashingTimer || autoHashing ? true : false"
+            >Generate block
+          </button>        
         </app-wrapper>
 
     </mat-grid-tile>
     <mat-grid-tile>
-        <app-wrapper>
-
-            <h3>Generate new transaction</h3>
+        <app-wrapper>        
         
-          <form #form="ngForm" style="text-align: center;" (ngSubmit)="onSubmit(form.value)">
-        
-            <mat-form-field class="example-form-field" appearance="fill">
-              <input matInput type="text" [(ngModel)]="hash" [ngModelOptions]="{standalone: true}">
-              <button *ngIf="hash" matSuffix mat-stroked-button mat-icon-button aria-label="Clear" (click)="hash=''">
+            <mat-form-field appearance="fill">
+              <input 
+                matInput 
+                type="text" 
+                [(ngModel)]="hash" 
+                [ngModelOptions]="{standalone: true}"
+                placeholder="Generate new transaction"
+                >
+              <button 
+              *ngIf="hash"
+              matSuffix 
+              mat-raised-button 
+              mat-icon-button 
+              aria-label="Clear" 
+              (click)="hash=''">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
         
             <br>
-            <br>
-            <button mat-stroked-button [disabled]="(hashingTimer ? true : false) || !hash">Submit</button>
-            <br>
-          </form>
-          <br>
-          <br>
+            <button 
+              mat-raised-button 
+              color='primary'
+              (click)='onSubmit()'
+              [disabled]="
+                ((hashingTimer || autoHashing) ? true : false) 
+                || !hash
+                ">
+              Submit
+            </button>
         </app-wrapper>
     </mat-grid-tile>
   </mat-grid-list>
