@@ -1,8 +1,9 @@
 <app-wrapper >
-  <h3>List of blocks ({{ blockchainstore.blockchain.length }}) in the chain</h3>
+  <h3>List of blocks</h3>
     <ul>
-      <li *ngFor="let b of blockchainstore.blockchain">
-
-        {{ b.blockHash }}</li>
+      <li *ngFor="let b of blockchainstore?.blockchain; let i=index">
+        <span *ngIf="i<limit">
+          {{ b.blockHash }}
+        </span></li>
     </ul>
 </app-wrapper>

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 interface AppState  {
   blocks: any;
@@ -12,6 +11,8 @@ interface AppState  {
   styleUrls: ['./blocks.component.scss']
 })
 export class BlocksComponent implements OnInit {
+  @Input() limit = 100;
+  
   //from store
   blocks$: Observable<any>;
   blockchainstore: any;

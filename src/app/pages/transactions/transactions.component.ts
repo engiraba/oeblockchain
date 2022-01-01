@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/block.model';
@@ -9,6 +9,7 @@ import { AppState } from 'src/app/block.model';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
+  @Input() limit = 100;
 
   //from store
   blocks$: Observable<any>;
