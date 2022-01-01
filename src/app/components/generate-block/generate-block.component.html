@@ -2,7 +2,7 @@
   <mat-grid-tile>
     <app-wrapper >
       <div [style.color]="(hashingTimer || autoHashing) ? 'green' : hash ? 'orange' : 'gray'">
-        <h3>Status</h3>
+        <h3>Status <small>({{ blockchainstore.blockchain.length }})</small></h3>
         <h2>
           {{ hashingTimer ? hashingTimer : '/'}}
         </h2>
