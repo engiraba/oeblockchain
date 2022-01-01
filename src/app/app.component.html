@@ -2,25 +2,18 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav class="sidebar" mode="side" opened="true">
       <img class="logo" src="assets/images/oeblocks_logo.PNG">
-
-
-      <hr>
-      <br>
-      <button mat-stroked-button><a routerLink="/">Dashboard</a></button>
-      <br>
-      <br>
-      <button mat-stroked-button><a routerLink="/blocks">Blocks</a></button>
-      <br>      <br>
-
-      <button mat-stroked-button><a routerLink="/transactions">Transactions</a></button>
-      <br>      <br>
-
-
+      <a routerLink="/">
+      <button mat-raised-button>Dashboard</button>
+      </a>
+      <a routerLink="/blocks">
+        <button mat-raised-button>Blocks</button>
+      </a>
+      <a routerLink="/transactions">
+      <button mat-raised-button>Transactions</button>
+      </a>
     </mat-sidenav>
     <mat-sidenav-content class="content-nav">
-
       <router-outlet></router-outlet>
-
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
