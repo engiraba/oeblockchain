@@ -12,4 +12,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 ul {
   list-style-type: none;
+
+  li span {
+    color: gray;
+  }
+}
+
+mat-sidenav a  {
+  color:gray;
+  button {
+    margin: 10px 0 !important;  
+    width: 90%;
+  }  
+}
+
+app-wrapper {
+  .container {
+    margin: 30px 0;
+    padding: 0.5px 15px;
+    mat-card {
+      border-radius: 0% !important;
+      color: black;
+      background-color: #f1dfd1;
+      background-image: linear-gradient(315deg, #f1dfd1 0%, #f6f0ea 74%);
+    }
+  }  
 }
