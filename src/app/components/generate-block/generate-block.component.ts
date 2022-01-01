@@ -17,7 +17,7 @@ export class GenerateBlockComponent implements OnInit {
   block : any;
   previousBlock : string = "";
 
-  //from store
+  // from store
   blocks$: Observable<any>;
   blockchainstore: any;
 
@@ -69,8 +69,8 @@ randomIntFromInterval(min : number, max : number) {
 
 // TODO temporary mock transactions
 generateTransaction() : string {
-  let a = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-  let b = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+  let a = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
+  let b = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5).toUpperCase();
   let actionList = [
     "sold",
     "bought"
