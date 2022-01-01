@@ -17,6 +17,7 @@ export class GenerateBlockComponent implements OnInit {
     block : any;
     previousBlock : string = "";
     autoHashing : boolean = false;
+    hashing : boolean = false;
 
     // from store
     blocks$: Observable<any>;
@@ -39,7 +40,7 @@ export class GenerateBlockComponent implements OnInit {
 
   // Generate the next block 
   onSubmit()  {
-    (this.autoHashing || this.hashingTimer) ? '' : this.generateBlock(); 
+    (this.autoHashing || this.hashing) ? '' : this.generateBlock(); 
   }
 
   autoGenerate(block? : any) {
@@ -53,7 +54,7 @@ export class GenerateBlockComponent implements OnInit {
 
   generateBlock(block? : any){
     this.hashingTimer = 3;
-
+    this.hash ? this.hashing = false : this.hashing = true;
     let countDown = setInterval(() => {
       this.hashingTimer = this.hashingTimer - 1;
       if(this.hashingTimer === 0) {
@@ -63,7 +64,7 @@ export class GenerateBlockComponent implements OnInit {
         let newChain : string[] = lastBlock.getTransactions();
         let newTransaction : string = this.generateTransaction();
 
-        (this.hash && (!this.autoHashing || this.hashingTimer)) ?
+        (this.hash && (!this.autoHashing || this.hashing)) ?
         newChain = [this.hash, ...newChain] : 
         newChain = [newTransaction.toString(), ...newChain];
 
@@ -72,8 +73,8 @@ export class GenerateBlockComponent implements OnInit {
         this.blockchain.unshift(newBlock);
         this.block = this.blockchain[0].getBlockHash();
         this.store.dispatch(new BlockActions.GetNewBlock(newBlock));
-        (this.hash && (this.autoHashing || this.hashingTimer)) ? this.hash = this.hash : this.hash = '';
-            
+        (this.hash && (this.autoHashing || this.hashing)) ? this.hash = this.hash : this.hash = '';
+        this.hashing = false;
         this.autoHashing ? this.doGenerateNewBlocks() : '';   
       }
     }, 1000)

@@ -1,10 +1,13 @@
 <mat-grid-list cols="4" rowHeight="2:1">
   <mat-grid-tile>
-    <app-wrapper>
-      <h3>Status</h3>
-      <h2 [style.color]="'gray'">
-        {{ hashingTimer ? hashingTimer : '/'}}
-      </h2>
+    <app-wrapper >
+      <div [style.color]="(hashingTimer || autoHashing) ? 'green' : hash ? 'orange' : 'gray'">
+        <h3>Status</h3>
+        <h2>
+          {{ hashingTimer ? hashingTimer : '/'}}
+        </h2>
+      </div>
+      
     </app-wrapper>
 </mat-grid-tile>
   <mat-grid-tile>
@@ -13,7 +16,7 @@
       <button 
         mat-raised-button 
         [color]="autoHashing ? 'warn' : 'primary'" 
-        [disabled]="hashingTimer && !autoHashing ? true : false"
+        [disabled]="(hashingTimer && !autoHashing) || hash ? true : false"
         (click)="autoGenerate(block)">
         {{autoHashing ? 'Stop generating blocks' : 'Auto-generate blocks'}}
       </button>
@@ -22,19 +25,17 @@
     <mat-grid-tile>
         <app-wrapper>
             <h3>Generate single new block</h3>
-          <button 
-            mat-raised-button 
-            color="primary" 
-            (click)="generateBlock(block)" 
-            [disabled]="hashingTimer || autoHashing ? true : false"
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="generateBlock(block)"
+            [disabled]="hashingTimer || autoHashing || hash ? true : false"
             >Generate block
-          </button>        
+          </button>
         </app-wrapper>
-
     </mat-grid-tile>
     <mat-grid-tile>
-        <app-wrapper>        
-        
+        <app-wrapper>
             <mat-form-field appearance="fill">
               <input 
                 matInput 
