@@ -1,10 +1,10 @@
 <mat-grid-list cols="4" rowHeight="2:1">
   <mat-grid-tile>
     <app-wrapper >
-      <div [style.color]="(hashingTimer || autoHashing) ? 'green' : hash ? 'orange' : 'gray'">
+      <div [style.color]="(status.hashingTimer || status.autoHashing) ? 'green' : status.hash ? 'orange' : 'gray'">
         <h3>Status <small>({{ blockchainstore.blockchain.length }})</small></h3>
         <h2>
-          {{ hashingTimer ? hashingTimer : '/'}}
+          {{ status.hashingTimer ? status.hashingTimer : '/'}}
         </h2>
       </div>
       
@@ -15,10 +15,10 @@
         <h3>Auto-generate blocks</h3>
       <button 
         mat-raised-button 
-        [color]="autoHashing ? 'warn' : 'primary'" 
-        [disabled]="(hashingTimer && !autoHashing) || hash ? true : false"
+        [color]="status.autoHashing ? 'warn' : 'primary'" 
+        [disabled]="(status.hashingTimer && !status.autoHashing) || status.hash ? true : false"
         (click)="autoGenerate(block)">
-        {{autoHashing ? 'Stop generating blocks' : 'Auto-generate blocks'}}
+        {{status.autoHashing ? 'Stop generating blocks' : 'Auto-generate blocks'}}
       </button>
     </app-wrapper>
 </mat-grid-tile>
@@ -29,7 +29,7 @@
             mat-raised-button
             color="primary"
             (click)="generateBlock(block)"
-            [disabled]="hashingTimer || autoHashing || hash ? true : false"
+            [disabled]="status.hashingTimer || status.autoHashing || status.hash ? true : false"
             >Generate block
           </button>
         </app-wrapper>
@@ -40,17 +40,17 @@
               <input 
                 matInput 
                 type="text" 
-                [(ngModel)]="hash" 
+                [(ngModel)]="status.hash" 
                 [ngModelOptions]="{standalone: true}"
                 placeholder="Generate new transaction"
                 >
               <button 
-              *ngIf="hash"
+              *ngIf="status.hash"
               matSuffix 
               mat-raised-button 
               mat-icon-button 
               aria-label="Clear" 
-              (click)="hash=''">
+              (click)="updateHashingStatus('hash', '')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
@@ -61,8 +61,8 @@
               color='primary'
               (click)='onSubmit()'
               [disabled]="
-                ((hashingTimer || autoHashing) ? true : false) 
-                || !hash
+                ((status.hashingTimer || status.autoHashing) ? true : false) 
+                || !status.hash
                 ">
               Submit
             </button>
