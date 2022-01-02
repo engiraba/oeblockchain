@@ -7,7 +7,8 @@ const defaultState: any = {
     blockchain: [],
     previoushash: {},
     blockhash: '',
-    transactions: []
+    transactions: [],
+    status: {}
 };
 
 const newState = (state: any, newData: any) => {
@@ -23,6 +24,8 @@ export function blockReducer(state = defaultState, action: any) {
             return newState(state, {previoushash: state.block[0].getPreviousHash()})
         case BlockActions.GET_TRANSACTIONS:
             return newState(state, {transactions: state.block[0].getTransactions()})
+        case BlockActions.UPDATE_STATUS:
+            return newState(state, {status: action.payload})
         case BlockActions.GET_NEWBLOCK:    
             return newState(state, {
                 blockchain: [
