@@ -1,8 +1,8 @@
 <app-wrapper>
-  <h3>List of transactions</h3>
+  <h3>Transactions</h3>
     <ul>
       <li 
-        *ngFor="let b of blockchainstore.blockchain[0].transactions; 
+        *ngFor="let b of blockchainstore.transactions; 
         let i=index">
         <span *ngIf="i<limit">        
           {{ b }}
