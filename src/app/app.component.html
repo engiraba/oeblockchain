@@ -5,25 +5,25 @@
       <br>
       <small>The Blockchain Simulator</small>
       <a routerLink="/">
-      <button 
-        mat-raised-button 
-        [color]="location.path() === '' ? 'primary' : '' ">
-        Dashboard
-      </button>
+        <button
+          mat-raised-button 
+          [color]="location.path() === '' ? 'primary' : '' ">
+          Dashboard
+        </button>
       </a> 
       <a routerLink="/blocks">
-        <button 
+        <button
           mat-raised-button
           [color]="location.path() === '/blocks' ? 'primary' : '' ">
           Blocks
-      </button>
+        </button>
       </a>
       <a routerLink="/transactions">
-      <button 
-        mat-raised-button
-        [color]="location.path() === '/transactions' ? 'primary' : '' ">
-        Transactions
-      </button>
+        <button
+          mat-raised-button
+          [color]="location.path() === '/transactions' ? 'primary' : '' ">
+          Transactions
+        </button>
       </a>
     </mat-sidenav>
     <mat-sidenav-content class="content-nav">
