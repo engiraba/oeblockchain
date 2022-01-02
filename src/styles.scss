@@ -1,10 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-sidenav-container {  
+  height: 96vh;
+  width: 98vw;
+  margin: 2vh 1vw;
+  margin-top: 2vh;
+}
+
+.mat-drawer-container {
+  background-color: white;
+}      
 
 .logo {
   height: 200px;
@@ -18,12 +27,25 @@ ul {
   }
 }
 
-mat-sidenav a  {
-  color:gray;
-  button {
-    margin: 10px 0 !important;  
-    width: 90%;
-  }  
+mat-sidenav {
+  a  {
+    color:gray;
+    button {
+      margin: 10px 0 !important;  
+      width: 90%;
+    }  
+  }
+  small {
+    color: rgb(188, 188, 188);    
+  }
+}
+
+
+.sidebar {
+  border-right: 2px #F2E1D4 dotted;
+  padding: 0 7px;
+  width: 300px;
+  margin-right: 100px;
 }
 
 app-wrapper {
@@ -33,7 +55,6 @@ app-wrapper {
     mat-card {
       border-radius: 0% !important;
       color: black;
-      background-color: #f1dfd1;
       background-image: linear-gradient(315deg, #f1dfd1 0%, #f6f0ea 74%);
     }
   }  
