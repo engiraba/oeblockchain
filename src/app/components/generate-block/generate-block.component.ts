@@ -29,12 +29,14 @@ export class GenerateBlockComponent implements OnInit {
     }
 
   // Generate the first block of the chain on init
-  ngOnInit() {
-    this.blockchain = [new Block(0, [ this.generateTransaction() ])];
-    this.store.dispatch(new BlockActions.GetNewBlock(this.blockchain[0]))
-    this.block = this.blockchain[0].getBlockHash();
+  ngOnInit() {    
     this.blocks$.subscribe(o => {
       this.blockchainstore = o;
+      if (!o.blockchain.length) {
+        this.blockchain = [new Block(0, [ this.generateTransaction() ])];
+        this.store.dispatch(new BlockActions.GetNewBlock(this.blockchain[0]))
+        this.block = this.blockchain[0].getBlockHash();
+      }    
     })
   }
 
