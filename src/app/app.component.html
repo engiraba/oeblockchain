@@ -2,14 +2,28 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav class="sidebar" mode="side" opened="true">
       <img class="logo" src="assets/images/oeblocks_logo.PNG">
+      <br>
+      <small>The Blockchain Simulator</small>
       <a routerLink="/">
-      <button mat-raised-button>Dashboard</button>
-      </a>
+      <button 
+        mat-raised-button 
+        [color]="location.path() === '' ? 'primary' : '' ">
+        Dashboard
+      </button>
+      </a> 
       <a routerLink="/blocks">
-        <button mat-raised-button>Blocks</button>
+        <button 
+          mat-raised-button
+          [color]="location.path() === '/blocks' ? 'primary' : '' ">
+          Blocks
+      </button>
       </a>
       <a routerLink="/transactions">
-      <button mat-raised-button>Transactions</button>
+      <button 
+        mat-raised-button
+        [color]="location.path() === '/transactions' ? 'primary' : '' ">
+        Transactions
+      </button>
       </a>
     </mat-sidenav>
     <mat-sidenav-content class="content-nav">
