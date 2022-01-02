@@ -10,14 +10,17 @@ import * as BlockActions from '../../block.actions';
   styleUrls: ['./generate-block.component.scss']
 })
 export class GenerateBlockComponent implements OnInit {
-    hashingTimer = 0;
+    
     blockchain : Block[] = [];
-    genesisTransactions: string[] = [];
-    hash : any = '';
     block : any;
-    previousBlock : string = "";
-    autoHashing : boolean = false;
-    hashing : boolean = false;
+
+    status = {
+      autoHashing : false,
+      hashing : false,
+      hashingTimer: 0,
+      hash : ''
+    }
+    
 
     // from store
     blocks$: Observable<any>;
@@ -35,40 +38,65 @@ export class GenerateBlockComponent implements OnInit {
       if (!o.blockchain.length) {
         this.blockchain = [new Block(0, [ this.generateTransaction() ])];
         this.store.dispatch(new BlockActions.GetNewBlock(this.blockchain[0]))
-        this.block = this.blockchain[0].getBlockHash();
-      }    
+        this.block = this.blockchain[0].getBlockHash();        
+      } else {
+        this.status = o.status;
+      }
     })
+  }
+
+  // Change hashing status
+  updateHashingStatus(type: string, newValue: any) {
+    switch (type) {
+      case 'hash':
+        this.status = {...this.status, hash: newValue};
+        break;       
+      case 'autoHashing':
+        this.status = {...this.status, autoHashing: newValue};
+        break;       
+      case 'hashingTimer':
+        this.status = {...this.status, hashingTimer: newValue};
+        break;      
+      case 'hashing':
+        this.status = {...this.status, hashing: newValue};
+        break;
+    }
+    this.store.dispatch(new BlockActions.UpdateStatus(this.status))
   }
 
   // Generate the next block 
   onSubmit()  {
-    (this.autoHashing || this.hashing) ? '' : this.generateBlock(); 
+    (this.status.autoHashing || this.status.hashing) ? '' : this.generateBlock(); 
   }
 
   autoGenerate(block? : any) {
-    this.autoHashing = !this.autoHashing;
+    this.updateHashingStatus('autoHashing', !this.status.autoHashing);
     this.doGenerateNewBlocks();  
   }
 
   doGenerateNewBlocks() {
-    this.autoHashing ? this.generateBlock() : '';
+    this.status.autoHashing ? this.generateBlock() : '';
   }
 
   generateBlock(block? : any){
-    this.hashingTimer = Math.round(3 + (this.blockchainstore.blockchain.length * 0.45));
-    this.hashingTimer > 2000 ? this.hashingTimer = 2000 : this.hashingTimer = this.hashingTimer;
-    this.hash ? this.hashing = false : this.hashing = true;
+    this.updateHashingStatus('hashingTimer', Math.round(3 + (this.blockchainstore.blockchain.length * 0.45)));
+    this.status.hashingTimer > 20000 ? 
+    this.updateHashingStatus('hashingTimer', 20000) : 
+    this.updateHashingStatus('hashingTimer', this.status.hashingTimer);
+    this.status.hash ? 
+    this.updateHashingStatus('hashing', false) : 
+    this.updateHashingStatus('hashing', true);
     let countDown = setInterval(() => {
-      this.hashingTimer = this.hashingTimer - 1;
-      if(this.hashingTimer === 0) {
+      this.updateHashingStatus('hashingTimer', this.status.hashingTimer - 1);
+      if(this.status.hashingTimer === 0) {
         clearInterval(countDown)
         
-        let lastBlock = this.blockchain[0];
+        let lastBlock = this.blockchainstore.blockchain[0];
         let newChain : string[] = lastBlock.getTransactions();
         let newTransaction : string = this.generateTransaction();
 
-        (this.hash && (!this.autoHashing || this.hashing)) ?
-        newChain = [this.hash, ...newChain] : 
+        (this.status.hash && (!this.status.autoHashing || this.status.hashing)) ?
+        newChain = [this.status.hash, ...newChain] : 
         newChain = [newTransaction.toString(), ...newChain];
 
         let newBlock = new Block(this.block, newChain);
@@ -76,9 +104,11 @@ export class GenerateBlockComponent implements OnInit {
         this.blockchain.unshift(newBlock);
         this.block = this.blockchain[0].getBlockHash();
         this.store.dispatch(new BlockActions.GetNewBlock(newBlock));
-        (this.hash && (this.autoHashing || this.hashing)) ? this.hash = this.hash : this.hash = '';
-        this.hashing = false;
-        this.autoHashing ? this.doGenerateNewBlocks() : '';   
+        (this.status.hash && (this.status.autoHashing || this.status.hashing)) ? 
+        this.updateHashingStatus('hash', this.status.hash) : 
+        this.updateHashingStatus('hash', '');
+        this.updateHashingStatus('hashing', false);
+        this.status.autoHashing ? this.doGenerateNewBlocks() : '';   
       }
     }, 1000)
   }
