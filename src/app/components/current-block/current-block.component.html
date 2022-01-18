@@ -1,6 +1,8 @@
 <app-wrapper  *ngIf='blocks$ | async as p'>
   <h3>Current block hash</h3>
-<div style="font-size: 20px; font-weight: 900; font-weight: bold">
-    <h2>{{ p.blockchain[0].blockHash }}</h2>
+<div style="font-size: 20px; font-weight: 900; font-weight: bold"
+[matTooltip]="p.blockchain[0].timestamp"
+>
+    <h2 mat-tooltip="e">{{ p.blockchain[0].blockHash }}</h2>
 </div>
 </app-wrapper>

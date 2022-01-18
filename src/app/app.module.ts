@@ -19,7 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import { blockReducer } from './block.reducer';
 import { GenerateBlockComponent } from './components/generate-block/generate-block.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +42,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatCardModule,
     MatGridListModule,
+    MatTooltipModule,
     StoreModule.forRoot({
       blocks: blockReducer
     })

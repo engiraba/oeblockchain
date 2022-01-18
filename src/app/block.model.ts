@@ -5,10 +5,12 @@ export class Block {
     previousHash = {};
     blockHash = {};
     transactions : string[] = [];
+    timestamp: Date;
 
     constructor(previousHash : {}, transactions : string[]) {
         this.previousHash = previousHash;
         this.transactions = transactions;
+        this.timestamp = new Date;
         this.blockHash = hashCode(this.transactions);
     }
 
